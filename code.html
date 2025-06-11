@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- पाथ को ठीक किया गया -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- टैब बार और तीन-डॉट मेनू -->
+        <!-- Header Bar -->
         <div class="header-bar">
             <div class="tabs">
                 <button class="tab-button active" onclick="openTab(event, 'calculator')">Calculator</button>
@@ -25,40 +26,24 @@
             </div>
         </div>
 
-        <!-- मुख्य कंटेंट -->
+        <!-- Main Content -->
         <div class="main-content">
-            <!-- सामान्य कैलकुलेटर टैब -->
+            <!-- Calculator Tab -->
             <div id="calculator" class="tab-content active">
-                <!-- ... Calculator content ... -->
                 <div class="display" id="calcDisplay">0</div><div class="calculator-keys"><button class="special" onclick="clearDisplay()">C</button><button class="special" onclick="deleteLast()">DEL</button><button class="special" onclick="appendInput('%')">%</button><button class="operator" onclick="appendInput('/')">÷</button><button onclick="appendInput('7')">7</button><button onclick="appendInput('8')">8</button><button onclick="appendInput('9')">9</button><button class="operator" onclick="appendInput('*')">×</button><button onclick="appendInput('4')">4</button><button onclick="appendInput('5')">5</button><button onclick="appendInput('6')">6</button><button class="operator" onclick="appendInput('-')">−</button><button onclick="appendInput('1')">1</button><button onclick="appendInput('2')">2</button><button onclick="appendInput('3')">3</button><button class="operator" onclick="appendInput('+')">+</button><button onclick="appendInput('0')">0</button><button onclick="appendInput('.')">.</button><button class="equals operator" onclick="calculateResult()">=</button></div>
             </div>
-
-            <!-- GST, Discount, BMI Tabs (पहले जैसे ही) -->
-            <div id="gst" class="tab-content"> <!-- GST Content --> <div class="form-group"><label for="baseAmount">Base Amount</label><input type="number" id="baseAmount" placeholder="e.g., 1000" oninput="calculateGST()"></div><div class="form-group"><label for="gstRate">GST Rate</label><select id="gstRate" onchange="calculateGST()"><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div><div id="gstResult" class="result-box"><h3>Result</h3><p>GST Amount: <span id="gstAmount">₹0.00</span></p><p>Total Amount: <span id="totalAmount">₹0.00</span></p></div> </div>
-            <div id="discount" class="tab-content"> <!-- Discount Content --> <div class="form-group"><label for="originalPrice">Original Price</label><input type="number" id="originalPrice" placeholder="e.g., 2000" oninput="calculateDiscount()"></div><div class="form-group"><label for="discountPercent">Discount %</label><input type="number" id="discountPercent" placeholder="e.g., 15" oninput="calculateDiscount()"></div><div class="result-box"><h3>Result</h3><p>You Save: <span id="savedAmount">₹0.00</span></p><p>Final Price: <span id="finalPrice">₹0.00</span></p></div> </div>
-            <div id="bmi" class="tab-content"> <!-- BMI Content --> <div class="form-group bmi-units"><label><input type="radio" name="bmiUnit" value="metric" onchange="switchBmiUnits()" checked> Metric (cm, kg)</label><label><input type="radio" name="bmiUnit" value="imperial" onchange="switchBmiUnits()"> Imperial (ft, in, lbs)</label></div><div id="metric-inputs"><div class="form-group"><label for="heightCm">Height (cm)</label><input type="number" id="heightCm" placeholder="e.g., 175" oninput="calculateBMI()"></div><div class="form-group"><label for="weightKg">Weight (kg)</label><input type="number" id="weightKg" placeholder="e.g., 70" oninput="calculateBMI()"></div></div><div id="imperial-inputs" class="hidden"><div class="form-group height-group"><div class="sub-group"><label for="heightFt">Height (ft)</label><input type="number" id="heightFt" placeholder="e.g., 5" oninput="calculateBMI()"></div><div class="sub-group"><label for="heightIn">(in)</label><input type="number" id="heightIn" placeholder="e.g., 9" oninput="calculateBMI()"></div></div><div class="form-group"><label for="weightLbs">Weight (lbs)</label><input type="number" id="weightLbs" placeholder="e.g., 154" oninput="calculateBMI()"></div></div><div class="result-box"><h3 class="result-title">Your BMI</h3><p class="bmi-value" id="bmiValue">0.0</p><p class="bmi-category" id="bmiCategory">Enter your details</p></div> </div>
+            <!-- Other Tabs -->
+            <div id="gst" class="tab-content"> <div class="form-group"><label for="baseAmount">Base Amount</label><input type="number" id="baseAmount" placeholder="e.g., 1000" oninput="calculateGST()"></div><div class="form-group"><label for="gstRate">GST Rate</label><select id="gstRate" onchange="calculateGST()"><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select></div><div id="gstResult" class="result-box"><h3>Result</h3><p>GST Amount: <span id="gstAmount">₹0.00</span></p><p>Total Amount: <span id="totalAmount">₹0.00</span></p></div> </div>
+            <div id="discount" class="tab-content"> <div class="form-group"><label for="originalPrice">Original Price</label><input type="number" id="originalPrice" placeholder="e.g., 2000" oninput="calculateDiscount()"></div><div class="form-group"><label for="discountPercent">Discount %</label><input type="number" id="discountPercent" placeholder="e.g., 15" oninput="calculateDiscount()"></div><div class="result-box"><h3>Result</h3><p>You Save: <span id="savedAmount">₹0.00</span></p><p>Final Price: <span id="finalPrice">₹0.00</span></p></div> </div>
+            <div id="bmi" class="tab-content"> <div class="form-group bmi-units"><label><input type="radio" name="bmiUnit" value="metric" onchange="switchBmiUnits()" checked> Metric (cm, kg)</label><label><input type="radio" name="bmiUnit" value="imperial" onchange="switchBmiUnits()"> Imperial (ft, in, lbs)</label></div><div id="metric-inputs"><div class="form-group"><label for="heightCm">Height (cm)</label><input type="number" id="heightCm" placeholder="e.g., 175" oninput="calculateBMI()"></div><div class="form-group"><label for="weightKg">Weight (kg)</label><input type="number" id="weightKg" placeholder="e.g., 70" oninput="calculateBMI()"></div></div><div id="imperial-inputs" class="hidden"><div class="form-group height-group"><div class="sub-group"><label for="heightFt">Height (ft)</label><input type="number" id="heightFt" placeholder="e.g., 5" oninput="calculateBMI()"></div><div class="sub-group"><label for="heightIn">(in)</label><input type="number" id="heightIn" placeholder="e.g., 9" oninput="calculateBMI()"></div></div><div class="form-group"><label for="weightLbs">Weight (lbs)</label><input type="number" id="weightLbs" placeholder="e.g., 154" oninput="calculateBMI()"></div></div><div class="result-box"><h3 class="result-title">Your BMI</h3><p class="bmi-value" id="bmiValue">0.0</p><p class="bmi-category" id="bmiCategory">Enter your details</p></div> </div>
         </div>
     </div>
 
-    <!-- History Modal -->
-    <div id="history-modal" class="modal hidden">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="hideModal('history-modal')">&times;</button>
-            <h2>History</h2>
-            <button class="clear-history-btn" onclick="clearHistory()">Clear History</button>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
+    <!-- Modals -->
+    <div id="history-modal" class="modal hidden"> <div class="modal-content"><button class="modal-close-btn" onclick="hideModal('history-modal')">×</button><h2>History</h2><button class="clear-history-btn" onclick="clearHistory()">Clear History</button><ul id="history-list"></ul></div> </div>
+    <div id="converter-modal" class="modal hidden"> <div class="modal-content"><button class="modal-close-btn" onclick="hideModal('converter-modal')">×</button><h2>Unit Converter</h2><div class="form-group"><label for="conversionType">Conversion Type</label><select id="conversionType" onchange="updateUnits()"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option></select></div><div class="form-group"><label for="inputValue">Value</label><input type="number" id="inputValue" placeholder="Enter value" oninput="convertUnit()"></div><div class="form-group"><label for="fromUnit">From</label><select id="fromUnit" onchange="convertUnit()"></select></div><div class="form-group"><label for="toUnit">To</label><select id="toUnit" onchange="convertUnit()"></select></div><div id="converterResult" class="result-box"><h3>Result</h3><p id="conversionResult">0</p></div></div> </div>
 
-    <!-- Unit Converter Modal -->
-    <div id="converter-modal" class="modal hidden">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="hideModal('converter-modal')">&times;</button>
-            <h2>Unit Converter</h2>
-            <div class="form-group"><label for="conversionType">Conversion Type</label><select id="conversionType" onchange="updateUnits()"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option></select></div><div class="form-group"><label for="inputValue">Value</label><input type="number" id="inputValue" placeholder="Enter value" oninput="convertUnit()"></div><div class="form-group"><label for="fromUnit">From</label><select id="fromUnit" onchange="convertUnit()"></select></div><div class="form-group"><label for="toUnit">To</label><select id="toUnit" onchange="convertUnit()"></select></div><div id="converterResult" class="result-box"><h3>Result</h3><p id="conversionResult">0</p></div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <!-- पाथ को ठीक किया गया -->
+    <script src="./script.js"></script>
 </body>
 </html>
